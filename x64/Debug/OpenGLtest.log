@@ -1,0 +1,10 @@
+﻿  Camera.cpp
+  Engine.cpp
+  Grid.cpp
+  InputProcessor.cpp
+  Shader.cpp
+  Utils.cpp
+  OpenGLtest.cpp
+  Создание кода...
+LINK : warning LNK4098: библиотека по умолчанию "MSVCRT" конфликтует с использованием других библиотек; используйте /NODEFAULTLIB:library
+  OpenGLtest.vcxproj -> E:\work projekts\OpenGLtest\x64\Debug\Engine.exe

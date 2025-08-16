@@ -1,0 +1,41 @@
+#pragma once
+
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <memory>
+#include "Camera.h"
+#include "InputProcessor.h"
+#include "Shader.h"
+#include "Grid.h"
+
+class Engine
+{
+public:
+    Engine(int width, int height, const char* title);
+    ~Engine();
+
+    void Run();
+    void AddObject(std::unique_ptr<SceneObject> object);
+private:
+    GLFWwindow* Window;
+    int Width;
+    int Height;
+    const char* Title;
+
+    float DeltaTime;
+    float LastFrame;
+
+    std::unique_ptr<Camera> MainCamera;
+    std::unique_ptr<InputProcessor> Input;
+    std::vector<std::unique_ptr<SceneObject>> SceneObjects;
+
+    void ProcessDeltaTime();
+    void RenderScene();
+
+private:
+    void ShowFPS();
+    int FrameCount;
+    double currentTime;
+    double LastTime;
+    double fps;
+};
