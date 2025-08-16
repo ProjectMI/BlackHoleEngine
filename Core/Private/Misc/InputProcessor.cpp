@@ -1,4 +1,4 @@
-#include "InputProcessor.h"
+#include "Misc/InputProcessor.h"
 
 InputProcessor::InputProcessor(GLFWwindow* window, Camera* camera)
     : Window(window), MainCamera(camera), LastX(400.0), LastY(300.0), FirstMouse(true)

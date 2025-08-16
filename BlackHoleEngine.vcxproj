@@ -19,27 +19,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\fragment.glsl" />
     <None Include="Shaders\grid_fragment.glsl" />
     <None Include="Shaders\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Camera.cpp" />
-    <ClCompile Include="Core\Engine.cpp" />
-    <ClCompile Include="Core\Grid.cpp" />
-    <ClCompile Include="Core\InputProcessor.cpp" />
-    <ClCompile Include="Core\Shader.cpp" />
-    <ClCompile Include="Core\Utils.cpp" />
-    <ClCompile Include="BlackHoleEngine.cpp" />
+    <ClCompile Include="Core\BlackHoleEngine.cpp" />
+    <ClCompile Include="Core\Private\Engine\Camera.cpp" />
+    <ClCompile Include="Core\Private\Engine\Engine.cpp" />
+    <ClCompile Include="Core\Private\Misc\InputProcessor.cpp" />
+    <ClCompile Include="Core\Private\Misc\Shader.cpp" />
+    <ClCompile Include="Core\Private\Misc\Utils.cpp" />
+    <ClCompile Include="Core\Private\Objects\Grid.cpp" />
+    <ClCompile Include="Core\Private\Objects\Mesh.cpp" />
+    <ClCompile Include="Core\Private\Objects\SceneObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Camera.h" />
-    <ClInclude Include="Core\Engine.h" />
-    <ClInclude Include="Core\Grid.h" />
-    <ClInclude Include="Core\InputProcessor.h" />
-    <ClInclude Include="Core\SceneObject.h" />
-    <ClInclude Include="Core\Shader.h" />
-    <ClInclude Include="Core\Utils.h" />
+    <ClInclude Include="Core\Public\Engine\Camera.h" />
+    <ClInclude Include="Core\Public\Engine\Engine.h" />
+    <ClInclude Include="Core\Public\Misc\InputProcessor.h" />
+    <ClInclude Include="Core\Public\Misc\Shader.h" />
+    <ClInclude Include="Core\Public\Misc\Utils.h" />
+    <ClInclude Include="Core\Public\Objects\Grid.h" />
+    <ClInclude Include="Core\Public\Objects\Mesh.h" />
+    <ClInclude Include="Core\Public\Objects\SceneObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -128,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\work projekts\BlackHoleEngine\BlackHoleEngine\Core\;E:\work projekts\BlackHoleEngine\BlackHoleEngine\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\work projekts\BlackHoleEngine\BlackHoleEngine\Core\Public\;E:\work projekts\BlackHoleEngine\BlackHoleEngine\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

@@ -4,9 +4,9 @@
 #include <GLFW/glfw3.h>
 #include <memory>
 #include "Camera.h"
-#include "InputProcessor.h"
-#include "Shader.h"
-#include "Grid.h"
+#include "Misc/InputProcessor.h"
+#include "Misc/Shader.h"
+#include "Objects/Grid.h"
 
 class Engine
 {

@@ -18,9 +18,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\fragment.glsl">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\grid_fragment.glsl">
       <Filter>Shaders</Filter>
     </None>
@@ -29,48 +26,57 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Engine.cpp">
+    <ClCompile Include="Core\Private\Engine\Camera.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Grid.cpp">
+    <ClCompile Include="Core\Private\Engine\Engine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Core\InputProcessor.cpp">
+    <ClCompile Include="Core\Private\Misc\InputProcessor.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Shader.cpp">
+    <ClCompile Include="Core\Private\Misc\Shader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Utils.cpp">
+    <ClCompile Include="Core\Private\Misc\Utils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Camera.cpp">
+    <ClCompile Include="Core\Private\Objects\Grid.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="BlackHoleEngine.cpp">
+    <ClCompile Include="Core\Private\Objects\Mesh.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Objects\SceneObject.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\BlackHoleEngine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Camera.h">
+    <ClInclude Include="Core\Public\Engine\Camera.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Engine.h">
+    <ClInclude Include="Core\Public\Engine\Engine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Grid.h">
+    <ClInclude Include="Core\Public\Misc\InputProcessor.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Core\InputProcessor.h">
+    <ClInclude Include="Core\Public\Misc\Shader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Shader.h">
+    <ClInclude Include="Core\Public\Misc\Utils.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Utils.h">
+    <ClInclude Include="Core\Public\Objects\Grid.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Core\SceneObject.h">
+    <ClInclude Include="Core\Public\Objects\Mesh.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Objects\SceneObject.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

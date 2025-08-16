@@ -2,7 +2,8 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <memory>
-#include "Shader.h"
+#include "Misc/Shader.h"
+#include "Mesh.h"
 
 class SceneObject
 {
@@ -16,11 +17,13 @@ public:
     SceneObject(SceneObject&&) noexcept = default;
     SceneObject& operator=(SceneObject&&) noexcept = default;
 
-    virtual void Draw(const glm::mat4& projection, const glm::mat4& view) = 0;
+    void Draw(const glm::mat4& projection, const glm::mat4& view);
 
 protected:
+    void SetShader(const std::string& vertexPath, const std::string& fragmentPath);
+    std::unique_ptr<Mesh> MeshObj;
     std::unique_ptr<Shader> ObjectShader;
-    GLuint VAO = 0;
-    GLuint VBO = 0;
-    int VertexCount = 0;
+    GLuint program;
+    glm::mat4 model;
+
 };
