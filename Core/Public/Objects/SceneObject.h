@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <memory>
 #include "Misc/Shader.h"
 #include "Mesh.h"
@@ -17,7 +18,14 @@ public:
     SceneObject(SceneObject&&) noexcept = default;
     SceneObject& operator=(SceneObject&&) noexcept = default;
 
-    void Draw(const glm::mat4& projection, const glm::mat4& view);
+    virtual void Draw(const glm::mat4& projection, const glm::mat4& view) = 0;
+    void SetPosition(const Vector3D& pos) { Position = pos; UpdateModel(); }
+    void SetRotation(const Rotator& rot) { Rotation = rot; UpdateModel(); }
+    void SetScale(const Vector3D& sc) { Scale = sc;    UpdateModel(); }
+
+    Vector3D GetPosition() const { return Position; }
+    Rotator  GetRotation() const { return Rotation; }
+    Vector3D GetScale()    const { return Scale; }
 
 protected:
     void SetShader(const std::string& vertexPath, const std::string& fragmentPath);
@@ -26,4 +34,10 @@ protected:
     GLuint program;
     glm::mat4 model;
 
+    Vector3D Position{ 0, 0, 0 };
+    Rotator  Rotation{ 0, 0, 0 };
+    Vector3D Scale{ 1, 1, 1 };
+
+private:
+    void UpdateModel();
 };

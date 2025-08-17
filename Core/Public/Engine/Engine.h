@@ -6,7 +6,7 @@
 #include "Camera.h"
 #include "Misc/InputProcessor.h"
 #include "Misc/Shader.h"
-#include "Objects/Grid.h"
+#include "Objects/SceneObject.h"
 
 class Engine
 {
@@ -16,6 +16,7 @@ public:
 
     void Run();
     void AddObject(std::unique_ptr<SceneObject> object);
+    SceneObject* GetObject(int index);
 private:
     GLFWwindow* Window;
     int Width;

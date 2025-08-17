@@ -65,6 +65,11 @@ void Engine::AddObject(std::unique_ptr<SceneObject> object)
     SceneObjects.push_back(std::move(object));
 }
 
+SceneObject* Engine::GetObject(int index)
+{
+    return SceneObjects[index].get();
+}
+
 void Engine::ProcessDeltaTime()
 {
     float currentFrame = static_cast<float>(glfwGetTime());
@@ -74,7 +79,7 @@ void Engine::ProcessDeltaTime()
 
 void Engine::RenderScene()
 {
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)Width / (float)Height, 0.1f, 100.0f);

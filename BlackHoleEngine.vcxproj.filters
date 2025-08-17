@@ -24,6 +24,8 @@
     <None Include="Shaders\vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\stars_vertex.glsl" />
+    <None Include="Shaders\stars_fragment.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Private\Engine\Camera.cpp">
@@ -53,6 +55,12 @@
     <ClCompile Include="Core\BlackHoleEngine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Private\Objects\BlackHole.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Private\Objects\StarSkybox.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Public\Engine\Camera.h">
@@ -77,6 +85,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Core\Public\Objects\SceneObject.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Objects\BlackHole.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Public\Objects\StarSkybox.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

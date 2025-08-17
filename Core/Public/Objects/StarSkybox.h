@@ -1,11 +1,10 @@
 #pragma once
 #include "Objects/SceneObject.h"
+#include <random>
 
-
-class Grid : public SceneObject
+class StarSkybox : public SceneObject
 {
 public:
-    Grid(int size, float step);
-    ~Grid() = default;
+    StarSkybox(int starCount);
     virtual void Draw(const glm::mat4& projection, const glm::mat4& view) override;
 };

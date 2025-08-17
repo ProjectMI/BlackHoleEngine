@@ -1,16 +1,4 @@
 #include "Objects/SceneObject.h"
-#include <glm/gtc/type_ptr.hpp>
-
-void SceneObject::Draw(const glm::mat4& projection, const glm::mat4& view)
-{
-    glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-    glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-    glUniformMatrix4fv(glGetUniformLocation(program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-    MeshObj->Bind();
-    glDrawArrays(GL_LINES, 0, MeshObj->GetVertexCount());
-    MeshObj->Unbind();
-}
 
 void SceneObject::SetShader(const std::string& vertexPath, const std::string& fragmentPath)
 {
@@ -20,3 +8,12 @@ void SceneObject::SetShader(const std::string& vertexPath, const std::string& fr
     model = glm::mat4(1.0f);
 }
 
+void SceneObject::UpdateModel()
+{
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(Position.X, Position.Y, Position.Z));
+    model = glm::rotate(model, glm::radians(Rotation.Pitch), glm::vec3(1, 0, 0));
+    model = glm::rotate(model, glm::radians(Rotation.Yaw), glm::vec3(0, 1, 0));
+    model = glm::rotate(model, glm::radians(Rotation.Roll), glm::vec3(0, 0, 1));
+    model = glm::scale(model, glm::vec3(Scale.X, Scale.Y, Scale.Z));
+}

@@ -22,3 +22,15 @@ Grid::Grid(int size, float step)
     SetShader("vertex.glsl", "grid_fragment.glsl");
 }
 
+void Grid::Draw(const glm::mat4& projection, const glm::mat4& view)
+{
+    ObjectShader->Use();
+    glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+    glUniformMatrix4fv(glGetUniformLocation(program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+    MeshObj->Bind();
+    glDrawArrays(GL_LINES, 0, MeshObj->GetVertexCount());
+    MeshObj->Unbind();
+}
+
