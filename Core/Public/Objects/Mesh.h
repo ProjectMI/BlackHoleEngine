@@ -18,7 +18,7 @@ public:
     void Bind() const;
     void Unbind() const;
     int GetVertexCount() const { return VertexCount; }
-
+    static std::vector<Vector3D> CreateUVSphere(float radius, int latSegments = 24, int longSegments = 48);
 private:
     GLuint VAO = 0;
     GLuint VBO = 0;

@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\blackhole_fragment.glsl" />
+    <None Include="Shaders\blackhole_vertex.glsl" />
     <None Include="Shaders\grid_fragment.glsl" />
+    <None Include="Shaders\lens_fragment.glsl" />
+    <None Include="Shaders\lens_vertex.glsl" />
     <None Include="Shaders\stars_fragment.glsl" />
     <None Include="Shaders\stars_vertex.glsl" />
     <None Include="Shaders\vertex.glsl" />
@@ -32,6 +36,7 @@
     <ClCompile Include="Core\Private\Misc\Shader.cpp" />
     <ClCompile Include="Core\Private\Misc\Utils.cpp" />
     <ClCompile Include="Core\Private\Objects\BlackHole.cpp" />
+    <ClCompile Include="Core\Private\Objects\BlackHoleLensEffect.cpp" />
     <ClCompile Include="Core\Private\Objects\Grid.cpp" />
     <ClCompile Include="Core\Private\Objects\Mesh.cpp" />
     <ClCompile Include="Core\Private\Objects\SceneObject.cpp" />
@@ -44,6 +49,7 @@
     <ClInclude Include="Core\Public\Misc\Shader.h" />
     <ClInclude Include="Core\Public\Misc\Utils.h" />
     <ClInclude Include="Core\Public\Objects\BlackHole.h" />
+    <ClInclude Include="Core\Public\Objects\BlackHoleLensEffect.h" />
     <ClInclude Include="Core\Public\Objects\Grid.h" />
     <ClInclude Include="Core\Public\Objects\Mesh.h" />
     <ClInclude Include="Core\Public\Objects\SceneObject.h" />

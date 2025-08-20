@@ -24,9 +24,10 @@ public:
     void SetScale(const Vector3D& sc) { Scale = sc;    UpdateModel(); }
 
     Vector3D GetPosition() const { return Position; }
+    glm::vec3 GetPositionVec3() const { return Position; }
     Rotator  GetRotation() const { return Rotation; }
     Vector3D GetScale()    const { return Scale; }
-
+    glm::mat4 GetModel() { return model; };
 protected:
     void SetShader(const std::string& vertexPath, const std::string& fragmentPath);
     std::unique_ptr<Mesh> MeshObj;

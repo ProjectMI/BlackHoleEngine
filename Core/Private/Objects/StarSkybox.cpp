@@ -1,6 +1,7 @@
 #include "Objects/StarSkybox.h"
 
-StarSkybox::StarSkybox(int starCount)
+StarSkybox::StarSkybox(int starCount, int fbWidth, int fbHeight)
+    : fbWidth(fbWidth), fbHeight(fbHeight)
 {
     std::vector<Vector3D> stars;
     stars.reserve(starCount);
@@ -21,10 +22,52 @@ StarSkybox::StarSkybox(int starCount)
     MeshObj = std::make_unique<Mesh>(stars);
     glEnable(GL_PROGRAM_POINT_SIZE);
     SetShader("stars_vertex.glsl", "stars_fragment.glsl");
+
+    InitFramebuffer();
+}
+
+void StarSkybox::InitFramebuffer()
+{
+    // создаём FBO
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+    // цветовой текстурный аттачмент
+    glGenTextures(1, &colorTex);
+    glBindTexture(GL_TEXTURE_2D, colorTex);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fbWidth, fbHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTex, 0);
+
+    // depth renderbuffer
+    glGenRenderbuffers(1, &depthRbo);
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRbo);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, fbWidth, fbHeight);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthRbo);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        throw std::runtime_error("StarSkybox FBO is not complete!");
+    }
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void StarSkybox::RenderToFramebuffer(const glm::mat4& projection, const glm::mat4& view)
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glViewport(0, 0, fbWidth, fbHeight);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    Draw(projection, view);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void StarSkybox::Draw(const glm::mat4& projection, const glm::mat4& view)
 {
+    glDepthMask(GL_FALSE);
+
     ObjectShader->Use();
     glm::mat4 viewNoTranslation = glm::mat4(glm::mat3(view));
     glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
@@ -34,4 +77,6 @@ void StarSkybox::Draw(const glm::mat4& projection, const glm::mat4& view)
     MeshObj->Bind();
     glDrawArrays(GL_POINTS, 0, MeshObj->GetVertexCount());
     MeshObj->Unbind();
+
+    glDepthMask(GL_TRUE);
 }

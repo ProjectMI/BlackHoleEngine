@@ -17,10 +17,10 @@ public:
     void Run();
     void AddObject(std::unique_ptr<SceneObject> object);
     SceneObject* GetObject(int index);
-private:
-    GLFWwindow* Window;
     int Width;
     int Height;
+private:
+    GLFWwindow* Window;
     const char* Title;
 
     float DeltaTime;
