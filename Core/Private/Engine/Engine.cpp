@@ -4,6 +4,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
+double Engine::fps = 0.0;
+
 Engine::Engine(int width, int height, const char* title)
     : Width(width), Height(height), Title(title),
     Window(nullptr), DeltaTime(0.0f), LastFrame(0.0f)

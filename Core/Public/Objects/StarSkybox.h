@@ -23,4 +23,9 @@ private:
     int fbHeight = 0;
 
     void InitFramebuffer();
+
+private:
+    float rotationYaw = 0.0f;      // текущий угол
+    float rotationSpeed = 1.0f;    // скорость вращения в градусах/сек
+    double lastTime = 0.0;         // время предыдущего кадра
 };

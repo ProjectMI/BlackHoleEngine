@@ -1,4 +1,5 @@
 #include "Objects/StarSkybox.h"
+#include "Engine/Engine.h"
 
 StarSkybox::StarSkybox(int starCount, int fbWidth, int fbHeight)
     : fbWidth(fbWidth), fbHeight(fbHeight)
@@ -68,11 +69,21 @@ void StarSkybox::Draw(const glm::mat4& projection, const glm::mat4& view)
 {
     glDepthMask(GL_FALSE);
 
+    // обновляем угол (кадровая независимость через Engine::fps)
+    if (Engine::fps > 0.0) {
+        rotationYaw += rotationSpeed / static_cast<float>(Engine::fps);
+        if (rotationYaw > 360.0f) rotationYaw -= 360.0f;
+    }
+
     ObjectShader->Use();
     glm::mat4 viewNoTranslation = glm::mat4(glm::mat3(view));
+
+    // матрица вращения вокруг Y
+    glm::mat4 model = glm::rotate(glm::mat4(1.0f), glm::radians(rotationYaw), glm::vec3(0.0f, 1.0f, 0.0f));
+
     glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(viewNoTranslation));
-    glUniformMatrix4fv(glGetUniformLocation(program, "model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
+    glUniformMatrix4fv(glGetUniformLocation(program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
     MeshObj->Bind();
     glDrawArrays(GL_POINTS, 0, MeshObj->GetVertexCount());
@@ -80,3 +91,4 @@ void StarSkybox::Draw(const glm::mat4& projection, const glm::mat4& view)
 
     glDepthMask(GL_TRUE);
 }
+

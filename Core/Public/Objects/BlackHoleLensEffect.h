@@ -15,9 +15,9 @@ private:
     BlackHole* BH;
     StarSkybox* Skybox;
     Camera* CameraInstance;
-    float EventHorizonRadius = 5.0f;
-    float BlendStrength = 1.f; // 0..1
+    float EventHorizonRadius = 10.0f;
+    float BlendStrength = 0.95f; // 0..1
     float Opacity = 1.0f;
-    float Distortion = 0.3f; // сила искажени€
-    float Feather = 0.015f; // м€гка€ кромка (в дол€х радиуса)
+    float Distortion = 0.25f; // сила искажени€
+    float Feather = 0.05f; // м€гка€ кромка (в дол€х радиуса)
 };

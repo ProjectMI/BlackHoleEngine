@@ -20,6 +20,7 @@ public:
     Camera* GetCamera() { return MainCamera.get(); };
     int Width;
     int Height;
+    static double fps;
 private:
     GLFWwindow* Window;
     const char* Title;
@@ -39,5 +40,4 @@ private:
     int FrameCount;
     double currentTime;
     double LastTime;
-    double fps;
 };
