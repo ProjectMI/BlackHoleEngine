@@ -2,9 +2,7 @@
 
 BlackHole::BlackHole(float radius) : Radius(radius)
 {
-    auto vertices = Mesh::CreateUVSphere(radius, 64, 128);
-    MeshObj = std::make_unique<Mesh>(vertices);
-
+    MeshObj = Mesh::CreateSphere(radius);
     SetShader("vertex.glsl", "blackhole_fragment.glsl");
 }
 

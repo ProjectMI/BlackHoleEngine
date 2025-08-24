@@ -47,3 +47,23 @@ void Camera::ProcessMouse(float xOffset, float yOffset)
     if (Rotation.Pitch > 89.0f) Rotation.Pitch = 89.0f;
     if (Rotation.Pitch < -89.0f) Rotation.Pitch = -89.0f;
 }
+
+glm::mat4 Camera::GetBillboardMatrix(const glm::vec3& objectPos, glm::mat4& model) const
+{
+    glm::vec3 camPos = Position;
+    glm::vec3 lookDir = glm::normalize(camPos - objectPos);
+    glm::vec3 up(0.0f, 1.0f, 0.0f);
+    glm::vec3 right = glm::normalize(glm::cross(up, lookDir));
+    glm::vec3 newUp = glm::normalize(glm::cross(lookDir, right));
+
+    glm::mat4 rot(1.0f);
+    rot[0] = glm::vec4(right, 0.0f);
+    rot[1] = glm::vec4(newUp, 0.0f);
+    rot[2] = glm::vec4(lookDir, 0.0f);
+
+    // Трансляция объекта на своё место
+    glm::mat4 trans = glm::translate(glm::mat4(1.0f), objectPos);
+
+    return model = trans * rot;
+}
+

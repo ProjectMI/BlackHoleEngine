@@ -17,6 +17,7 @@ public:
     void Run();
     void AddObject(std::unique_ptr<SceneObject> object);
     SceneObject* GetObject(int index);
+    Camera* GetCamera() { return MainCamera.get(); };
     int Width;
     int Height;
 private:
